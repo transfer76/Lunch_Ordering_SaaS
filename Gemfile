@@ -18,6 +18,8 @@ gem "font-awesome-rails"
 gem 'simple_form'
 gem 'carrierwave', '>= 2.0.0.rc', '< 3.0'
 gem 'activeadmin'
+gem 'rolify'
+gem 'rubocop', require: false
 
 
 group :development, :test do
