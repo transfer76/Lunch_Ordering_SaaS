@@ -1,7 +1,6 @@
 class CreateOrders < ActiveRecord::Migration[5.2]
   def change
-    create_table :orders do |t|
-      t.integer :id
+    create_table :orders  do |t|
       t.references :user, foreign_key: true
 
       t.timestamps
