@@ -1,0 +1,38 @@
+.header-logo a {
+    color: white;
+}
+
+.header {
+    overflow: hidden;
+    vertical-align: baseline;
+    padding: 10px 40px;
+}
+
+.header-logo {
+    float: left;
+    margin-bottom: 5px;
+    font-size: 18px;
+    color: white;
+}
+.header-logo p {
+    font-size: 26px;
+    margin-bottom: 40px;
+}
+
+.header-logo span {
+    margin-right: 30px;
+}
+
+.header-nav {
+    line-height: 34px;
+    float: right;
+    color: white;
+}
+
+.header-nav a {
+    color: black;
+}
+
+footer {
+    margin-top: 2em;
+}
