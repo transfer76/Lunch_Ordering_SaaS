@@ -4,6 +4,13 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
+    <i class="fa fa-user"></i>
+    <%= f.input :username,
+                autofocus: true,
+                input_html: { autocomplete: "name" }%>
+    <i class="fa fa-at"></i>
+    <%= f.input :email,
+                input_html: { autocomplete: "email" }%>
   </div>
 
   <div class="form-actions">

@@ -26,16 +26,20 @@
         <div class="header-logo">
           <p>Lunch_Ordering</p>
           <span><%= link_to 'Menu', root_path %></span>
-          <span><%= link_to 'Configure Menu', orders_path %></span>
+          <span><%= link_to 'Configure Menu', menus_path %></span>
+          <span><%= link_to 'Configure Order', orders_path %></span>
+          <span><%= link_to 'Configure User', users_path %></span>
         </div>
         <div class="header-nav">
+          <ul>
           <% if user_signed_in? %>
-            <%= "@#{current_user.username}" %>
-            <%= link_to 'Sign out', destroy_user_session_path, :method => :delete  %>
+            <li><%= link_to "@#{current_user.username}", current_user %></li>
+            <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete  %></li>
           <% else %>
-            <%= link_to 'Sign up', new_user_registration_path %>
-            <%= link_to 'Sign in', new_user_session_path %>
+            <li><%= link_to 'Sign up', new_user_registration_path %></li>
+            <li><%= link_to 'Sign in', new_user_session_path %></li>
           <% end %>
+          </ul>
         </div>
       </div>
     </div>
