@@ -47,6 +47,6 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.fetch(:order, {})
+    params.fetch(:order, {}).permit(:id)
   end
 end

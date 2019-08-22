@@ -11,9 +11,11 @@ class MenusController < ApplicationController
 
   def new
     @menu = Menu.new
+    @menu.items.build
   end
 
   def edit
+    @menu.items.build
   end
 
   def create
@@ -47,6 +49,6 @@ class MenusController < ApplicationController
   end
 
   def menu_params
-    params.fetch(:menu, {})
+    params.fetch(:menu, {}).permit(:date)
   end
 end
