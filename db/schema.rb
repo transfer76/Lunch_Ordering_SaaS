@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2019_08_19_191401) do
   end
 
   create_table "menus", force: :cascade do |t|
-    t.datetime "date"
+    t.string "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["date"], name: "index_menus_on_date"
