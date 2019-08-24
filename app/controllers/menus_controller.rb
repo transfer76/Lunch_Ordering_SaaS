@@ -49,6 +49,6 @@ class MenusController < ApplicationController
   end
 
   def menu_params
-    params.fetch(:menu, {}).permit(:date)
+    params.fetch(:menu, {}).permit(:date, ites_attributes: [:id, :type, :name, :price, :photo, :_destroy])
   end
 end

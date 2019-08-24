@@ -1,2 +1,15 @@
+<table class='table'>
+  <tbody>
+    <% @menu.items.each do |i|%>
+      <tr>
+        <td><%= i.type %></td>
+        <td><%= i.name %></td>
+        <td><%= i.photo %></td>
+        <td><%= i.price %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 <%= link_to 'Edit', edit_menu_path(@menu) %> |
 <%= link_to 'Back', menus_path %>
