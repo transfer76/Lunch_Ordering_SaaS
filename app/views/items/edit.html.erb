@@ -1,0 +1,7 @@
+<div class="button fa fa-arrow-left fa-lg">
+  <%= link_to 'Back', menu_path(@item.menu), class: "btn btn-outline-dark", data: { confirm: 'Are you sure?' } %>
+</div>
+
+<h1>Editing Item</h1>
+
+<%= render 'form', item: @item %>

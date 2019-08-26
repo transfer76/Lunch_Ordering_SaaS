@@ -1,2 +1,17 @@
+<table class='table'>
+  <tbody>
+    <% @menu.items.each do |i|%>
+      <tr>
+        <td><%= i.type %></td>
+        <td><%= i.name %></td>
+        <td><%= i.photo %></td>
+        <td><%= i.price %></td>
+        <td><%= link_to 'Edit', edit_menu_item_path(@menu, i) %></td>
+        <td><%= link_to 'Destroy', menu_item_path(@menu, i), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 <%= link_to 'Edit', edit_menu_path(@menu) %> |
 <%= link_to 'Back', menus_path %>
