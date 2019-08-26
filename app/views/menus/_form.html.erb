@@ -1,4 +1,4 @@
-<%= simple_form_for(@menu) do |f| %>
+<%= simple_form_for(menu) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
@@ -6,6 +6,12 @@
     <%= f.input :date,
                 autofocus: true,
                 input_html: { autocomplete: "date" }%>
+      <%= f.simple_fields_for :items do |i| %>
+        <%= render 'item_fields', f: i %>
+      <% end %>
+  </div>
+  <div>
+    <%= link_to_add_association 'add task', f, :items, class: 'btn btn-success back-btn', data: { association_insertion_method: :append } %>
   </div>
 
   <div class="form-actions">

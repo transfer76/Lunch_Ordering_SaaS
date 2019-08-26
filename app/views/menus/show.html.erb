@@ -1,17 +1,28 @@
 <table class='table'>
+  <thead>
+  <tr>
+    <th scope="col">Course</th>
+    <th scope="col">Name</th>
+    <th scope="col">Photo</th>
+    <th scope="col">Price</th>
+    <th scope="col">Cart</th>
+  </tr>
+  </thead>
   <tbody>
     <% @menu.items.each do |i|%>
       <tr>
-        <td><%= i.type %></td>
+        <td><%= i.course %></td>
         <td><%= i.name %></td>
         <td><%= i.photo %></td>
         <td><%= i.price %></td>
-        <td><%= link_to 'Edit', edit_menu_item_path(@menu, i) %></td>
-        <td><%= link_to 'Destroy', menu_item_path(@menu, i), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to 'Edit', edit_menu_path(@menu) %> |
-<%= link_to 'Back', menus_path %>
+<div>
+  <%= link_to 'Edit', edit_menu_path(@menu), class: 'btn btn-success' %>
+</div>
+<div>
+  <%= link_to 'Back', menus_path, class: "btn btn-outline-dark back-btn" %>
+</div>
