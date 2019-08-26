@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   resources :menus do
     resources :items
   end
-  resources :orders
+  resources :orders, only: [:show, :new, :create]
   resources :users
 end

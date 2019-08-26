@@ -1,7 +1,7 @@
 <h1>Menu</h1>
 
 <% @menus.each do |menu| %>
-    <%= link_to menu.date, menu_path(menu), class: 'btn btn-primary btn-lg menu-btn' %>
+    <%= link_to menu.weekday, menu_path(menu), class: 'btn btn-primary btn-lg menu-btn' %>
 <% end %>
 
 <%= link_to 'New Menu', new_menu_path, class: 'btn btn-success' %>

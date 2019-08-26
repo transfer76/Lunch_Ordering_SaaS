@@ -5,7 +5,6 @@
     <th scope="col">Name</th>
     <th scope="col">Photo</th>
     <th scope="col">Price</th>
-    <th scope="col">Cart</th>
   </tr>
   </thead>
   <tbody>
@@ -25,4 +24,24 @@
 </div>
 <div>
   <%= link_to 'Back', menus_path, class: "btn btn-outline-dark back-btn" %>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <% if @order %>
+        <%= simple_form_for(@order) do |f| %>
+          <%= f.hidden_field :menu_id, value: @menu.id %>
+
+          <%= f.association :first_course, collection: @menu.first_courses, include_blank: 'None' %>
+          <%= f.association :main_course, collection: @menu.main_courses, include_blank: 'None' %>
+          <%= f.association :drink, collection: @menu.drinks, include_blank: 'None' %>
+
+          <div class="form-actions">
+            <%= f.button :submit, class: 'btn btn-primary' %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_19_191401) do
+ActiveRecord::Schema.define(version: 2019_08_27_134802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,18 +32,11 @@ ActiveRecord::Schema.define(version: 2019_08_19_191401) do
     t.index ["menu_id"], name: "index_items_menus_on_menu_id"
   end
 
-  create_table "items_orders", id: false, force: :cascade do |t|
-    t.bigint "item_id"
-    t.bigint "order_id"
-    t.index ["item_id"], name: "index_items_orders_on_item_id"
-    t.index ["order_id"], name: "index_items_orders_on_order_id"
-  end
-
   create_table "menus", force: :cascade do |t|
     t.string "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["date"], name: "index_menus_on_date"
+    t.index ["date"], name: "index_menus_on_date", unique: true
   end
 
   create_table "orders", force: :cascade do |t|
@@ -51,6 +44,9 @@ ActiveRecord::Schema.define(version: 2019_08_19_191401) do
     t.bigint "menu_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "first_course_id"
+    t.integer "main_course_id"
+    t.integer "drink_id"
     t.index ["id"], name: "index_orders_on_id"
     t.index ["menu_id"], name: "index_orders_on_menu_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
@@ -90,8 +86,6 @@ ActiveRecord::Schema.define(version: 2019_08_19_191401) do
 
   add_foreign_key "items_menus", "items"
   add_foreign_key "items_menus", "menus"
-  add_foreign_key "items_orders", "items"
-  add_foreign_key "items_orders", "orders"
   add_foreign_key "orders", "menus"
   add_foreign_key "orders", "users"
 end

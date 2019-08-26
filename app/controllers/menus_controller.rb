@@ -3,10 +3,13 @@ class MenusController < ApplicationController
   before_action :set_menu, only: [:show, :edit, :update, :destroy]
 
   def index
-    @menus = Menu.all
+    @menus = Menu.order(date: :desc).all
   end
 
   def show
+    if @menu.current?
+      @order = @menu.orders.build
+    end
   end
 
   def new
@@ -45,7 +48,7 @@ class MenusController < ApplicationController
   private
 
   def set_menu
-    @menu = Menu.find(params[:id])
+    @menu = Menu.includes(:items).find(params[:id])
   end
 
   def menu_params

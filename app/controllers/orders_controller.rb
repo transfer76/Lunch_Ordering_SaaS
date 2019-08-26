@@ -1,43 +1,19 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
-
-  def index
-    @orders = Order.all
-  end
+  before_action :set_order, only: [:show]
 
   def show
   end
 
-  def new
-    @order = Order.new
-  end
-
-  def edit
-  end
-
   def create
-    @order = Order.new(order_params)
+    order = Order.new(order_params)
+    order.user = current_user
 
-    if @order.save
-      redirect_to @order, notice: 'Order was successfully created.'
+    if order.save
+      redirect_to order.menu, notice: 'Order was successfully created.'
     else
-      render :new
+      redirect_to order.menu, alert: 'Order was not created'
     end
-  end
-
-  def update
-    if @order.update(order_params)
-      redirect_to @order, notice: 'Order was successfully updated.'
-    else
-      render :edit
-    end
-  end
-
-  def destroy
-    @order.destroy
-
-    redirect_to orders_url, notice: 'Order was successfully destroyed.'
   end
 
   private
@@ -47,6 +23,6 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.fetch(:order, {}).permit(:id, items_attributes: [:id, :course, :name, :price, :photo, :_destroy])
+    params.fetch(:order, {}).permit(:id, :menu_id, :first_course_id, :main_course_id, :drink_id)
   end
 end
