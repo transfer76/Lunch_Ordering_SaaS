@@ -20,7 +20,7 @@ gem 'carrierwave', '>= 2.0.0.rc', '< 3.0'
 gem 'pundit', '~> 2.0.0'
 gem 'rolify'
 gem 'rubocop', require: false
-gem 'simple_form'
+gem "cocoon"
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
