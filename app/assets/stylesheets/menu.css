@@ -1,3 +1,9 @@
 .menu-btn {
   width: 15em;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.back-btn {
+  margin: 1em;
 }

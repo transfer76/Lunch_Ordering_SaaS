@@ -22,7 +22,7 @@ class MenusController < ApplicationController
     @menu = Menu.new(menu_params)
 
     if @menu.save
-      redirect_to @menu, notice: 'Menu was successfully created.'
+      redirect_to menus_path, notice: 'Menu was successfully created.'
     else
       render :new
     end
@@ -49,6 +49,6 @@ class MenusController < ApplicationController
   end
 
   def menu_params
-    params.fetch(:menu, {}).permit(:date, ites_attributes: [:id, :type, :name, :price, :photo, :_destroy])
+    params.fetch(:menu, {}).permit(:date, items_attributes: [:id, :type, :name, :price, :photo, :_destroy])
   end
 end
