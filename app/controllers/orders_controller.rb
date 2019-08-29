@@ -2,17 +2,21 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_order, only: [:show]
 
+  def index
+    @orders = Order.all
+  end
+
   def show
   end
 
   def create
-    order = Order.new(order_params)
-    order.user = current_user
+    @order = Order.new(order_params)
+    @order.user = current_user
 
-    if order.save
-      redirect_to order.menu, notice: 'Order was successfully created.'
+    if @order.save
+      redirect_to @order.menu, notice: 'Order was successfully created.'
     else
-      redirect_to order.menu, alert: 'Order was not created'
+      redirect_to @order.menu, alert: 'Order was not created'
     end
   end
 

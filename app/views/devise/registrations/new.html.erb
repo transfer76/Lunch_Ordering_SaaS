@@ -14,6 +14,9 @@
           <i class="fa fa-at"></i>
           <%= f.input :email,
                       input_html: { autocomplete: "email" }%>
+          <i class="fa fa-phone"></i>
+          <%= f.input :phone,
+                      input_html: { autocomplete: "phone" }%>
           <i class="fa fa-key"></i>
           <%= f.input :password,
                       hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),

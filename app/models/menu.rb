@@ -1,5 +1,5 @@
 class Menu < ApplicationRecord
-  has_and_belongs_to_many :items
+  has_and_belongs_to_many :items, -> { order(:course) }
   has_many :orders
 
   validates :date, presence: true, format: /\A\d{4}-\d{2}-\d{2}\z/, uniqueness: true

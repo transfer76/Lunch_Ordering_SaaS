@@ -3,13 +3,15 @@ class MenusController < ApplicationController
   before_action :set_menu, only: [:show, :edit, :update, :destroy]
 
   def index
-    @menus = Menu.order(date: :desc).all
+    @menus = Menu.order(date: :asc).all
   end
 
   def show
     if @menu.current?
       @order = @menu.orders.build
     end
+
+    @user_order = @menu.orders.where(user_id: current_user.id)
   end
 
   def new

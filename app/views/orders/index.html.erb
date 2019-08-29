@@ -1,18 +1,13 @@
-<div class="text-center">
-  <h2><%= @user.username %></h2>
-
-  <% if current_user %>
-    <p class="form-button">
-      <%= link_to "Edit profile", edit_user_path(@user), class: 'btn btn-default' %>
-    </p>
-  <% end  %>
-</div>
-
 <div class="container">
   <div class="row">
-    <div class="col-md-6">
-      <% @user.orders.each do |order| %>
-        Order # <%= order.id %>
+    <div class="col-md-4">
+      <% @orders.each do |order| %>
+        <div>
+          <b>Day: </b><%= order.created_at.strftime('%A %Y-%m-%d') %>
+        </div>
+        <div>
+          <b>Client: </b><%= order.user.username %>
+        </div>
         <table class='table table-bordered margin'>
           <thead class="thead-dark">
             <tr>
@@ -35,13 +30,8 @@
             </tr>
           </tbody>
         </table>
-        <div>
-          total: <%= total_price_for_order(order) %> $
-        </div>
         <hr>
       <% end %>
     </div>
   </div>
 </div>
-
-<%= link_to 'Back', users_path, class: "btn btn-outline-dark back-btn" %>
