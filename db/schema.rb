@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_29_173639) do
+ActiveRecord::Schema.define(version: 2019_09_01_201652) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 2019_08_29_173639) do
     t.integer "first_course_id"
     t.integer "main_course_id"
     t.integer "drink_id"
+    t.decimal "price"
     t.index ["id"], name: "index_orders_on_id"
     t.index ["menu_id"], name: "index_orders_on_menu_id"
     t.index ["user_id"], name: "index_orders_on_user_id"

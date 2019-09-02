@@ -13,6 +13,7 @@
     <div class="col-md-6">
       <% @user.orders.each do |order| %>
         Order # <%= order.id %>
+        <%= order.created_at.strftime('%A %Y-%m-%d') %>
         <table class='table table-bordered margin'>
           <thead class="thead-dark">
             <tr>
@@ -36,7 +37,7 @@
           </tbody>
         </table>
         <div>
-          total: <%= total_price_for_order(order) %> $
+          total: <%= order.price if order.price.present? %> $
         </div>
         <hr>
       <% end %>

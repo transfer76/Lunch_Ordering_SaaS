@@ -12,6 +12,7 @@ class MenusController < ApplicationController
     end
 
     @user_order = @menu.orders.where(user_id: current_user.id)
+    @total = @menu.orders.where(@order.price).sum(:price)
   end
 
   def new

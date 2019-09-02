@@ -131,14 +131,19 @@
         </table>
         <div>
           @<b><%= order.user.username if order.user.present? %></b>
-          total: <%= total_price_for_order(order) %> $
+          total: <%= order.price if order.price.present? %> $
         </div>
         <hr>
       <% end %>
     </div>
 
     <div class='col-md-4 offset-md-3'>
+      <div>
+        <u><h4>Total for the Day: <%= @total %> $</u>
+      </div>
+
       <h3>Orders for Day</h3>
+
       <% @menu.orders.each do |order| %>
         Order # <%= order.id %>
         <table class='table table-bordered margin'>
@@ -165,7 +170,7 @@
         </table>
         <div>
           @<b><%= order.user.username if order.user.present? %></b>
-          total: <%= total_price_for_order(order) %> $
+          total: <%= order.price %> $
         </div>
         <hr>
       <% end %>

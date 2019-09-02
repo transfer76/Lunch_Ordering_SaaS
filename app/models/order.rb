@@ -8,6 +8,20 @@ class Order < ApplicationRecord
 
   validate :validate_current_day
 
+  before_save :total_price_for_order
+
+  def total_price_for_order
+    a = 0
+    b = 0
+    c = 0
+
+    a = first_course.price if first_course.present?
+    b = main_course.price if main_course.present?
+    c = drink.price if drink.present?
+
+    self.price = (a + b + c)
+  end
+
   private
 
   def validate_current_day
