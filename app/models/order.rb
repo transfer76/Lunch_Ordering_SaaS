@@ -7,6 +7,7 @@ class Order < ApplicationRecord
   belongs_to :drink, class_name: 'Item', optional: true
 
   validate :validate_current_day
+  validate :validate_item_present
 
   before_save :total_price_for_order
 
@@ -27,6 +28,12 @@ class Order < ApplicationRecord
   def validate_current_day
     unless menu&.current?
       errors.add(:menu_id, :invalid)
+    end
+  end
+
+  def validate_item_present
+    unless [first_course, main_course, drink].any?
+      errors.add(:order, alert: 'One of courses must be present')
     end
   end
 end
