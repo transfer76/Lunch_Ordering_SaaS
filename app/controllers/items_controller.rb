@@ -2,7 +2,7 @@ class ItemsController< ApplicationController
   before_action :authenticate_user!
   before_action :set_menu
   before_action :set_item, only: [:edit, :update, :destroy]
-  
+
 
   def new
     @item = @menu.items.new
@@ -54,6 +54,6 @@ class ItemsController< ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:course, :name, :price, :photo)
+    params.require(:item).permit(:course, :name, :photo, :price)
   end
 end

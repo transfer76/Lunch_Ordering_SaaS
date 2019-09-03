@@ -3,6 +3,7 @@
               Item.courses.map { |key, value| [key.humanize, key] },
               input_html: { autocomplete: "course" } %>
   <%= f.input :name %>
+  <%= image_tag(f.object.photo&.thumb&.url) if f.object.photo.present? %>
   <%= f.input :photo %>
   <%= f.input :price %>
   <div class="back-btn">

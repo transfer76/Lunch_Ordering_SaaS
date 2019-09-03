@@ -5,4 +5,6 @@ class Item < ApplicationRecord
 
   validates :course, :price, presence: true
   validates :name, length: { minimum: 3 }, presence: true
+
+  mount_uploader :photo, PhotoUploader
 end

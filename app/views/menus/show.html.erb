@@ -15,7 +15,7 @@
         <tr>
           <td class='col-2'><b><%= i.course %></b></td>
           <td class='col-2'><%= i.name %></td>
-          <td class='col-4'><%= i.photo %></td>
+          <td class='col-3'><%= image_tag(item_photo(i), class: 'img-icon') %></td>
           <td class='col-2'><%= i.price %> $</td>
         </tr>
       <% end %>
@@ -38,7 +38,7 @@
         <tr>
           <td class='col-2'><b><%= i.course %></b></td>
           <td class='col-2'><%= i.name %></td>
-          <td class='col-4'><%= i.photo %></td>
+          <td class='col-3'><%= image_tag(item_photo(i), class: 'img-icon') %></td>
           <td class='col-2'><%= i.price %> $</td>
         </tr>
       <% end %>
@@ -61,7 +61,7 @@
         <tr>
           <td class='col-2'><b><%= i.course %></b></td>
           <td class='col-2'><%= i.name %></td>
-          <td class='col-4'><%= i.photo %></td>
+          <td class='col-3'><%= image_tag(item_photo(i), class: 'img-icon') %></td>
           <td class='col-2'><%= i.price %> $</td>
         </tr>
       <% end %>
