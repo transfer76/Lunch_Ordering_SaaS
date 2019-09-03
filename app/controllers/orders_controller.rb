@@ -4,14 +4,19 @@ class OrdersController < ApplicationController
 
   def index
     @orders = Order.all
+
+    authorize @orders
   end
 
   def show
+    authorize @order
   end
 
   def create
     @order = Order.new(order_params)
     @order.user = current_user
+
+    authorize @order
 
     if @order.save
       redirect_to @order.menu, notice: 'Order was successfully created.'

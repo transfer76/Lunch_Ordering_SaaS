@@ -10,4 +10,8 @@ class User < ApplicationRecord
             format: { with: VALID_EMAIL_REGEX }
   validates :phone, numericality: true, length: { minimum: 10, maximum: 15 },
             allow_blank: true
+
+  def admin?
+    has_role?(:admin)
+  end
 end

@@ -4,6 +4,8 @@ class MenusController < ApplicationController
 
   def index
     @menus = Menu.order(date: :asc).all
+
+    authorize @menus
   end
 
   def show
@@ -12,20 +14,28 @@ class MenusController < ApplicationController
     end
 
     @user_order = @menu.orders.where(user_id: current_user.id)
-    @total = @menu.orders.where(@order.price).sum(:price)
+    #@total = @menu.orders.where(@order.price).sum(:price)
+
+    authorize @menu
   end
 
   def new
     @menu = Menu.new
     @menu.items.build
+
+    authorize @menu
   end
 
   def edit
     @menu.items.build
+
+    authorize @menu
   end
 
   def create
     @menu = Menu.new(menu_params)
+
+    authorize @menu
 
     if @menu.save
       redirect_to menus_path, notice: 'Menu was successfully created.'
@@ -35,6 +45,8 @@ class MenusController < ApplicationController
   end
 
   def update
+    authorize @menu
+
     if @menu.update(menu_params)
       redirect_to @menu, notice: 'Menu was successfully updated.'
     else
@@ -43,8 +55,9 @@ class MenusController < ApplicationController
   end
 
   def destroy
-    @menu.destroy
+    authorize @menu
 
+    @menu.destroy
     redirect_to menus_url, notice: 'Menu was successfully destroyed.'
   end
 

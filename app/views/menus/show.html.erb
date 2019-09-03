@@ -8,7 +8,6 @@
       <th scope="col">Name</th>
       <th scope="col">Photo</th>
       <th scope="col">Price</th>
-      <th scope="col">Action</th>
     </tr>
     </thead>
     <tbody>
@@ -18,9 +17,6 @@
           <td class='col-2'><%= i.name %></td>
           <td class='col-4'><%= i.photo %></td>
           <td class='col-2'><%= i.price %> $</td>
-          <td class='col-2'><%= link_to 'Delete', menu_item_path(@menu, i),
-            method: :delete, data: { confirm: 'Are you sure?' } %>
-          </td>
         </tr>
       <% end %>
     </tbody>
@@ -35,7 +31,6 @@
       <th scope="col">Name</th>
       <th scope="col">Photo</th>
       <th scope="col">Price</th>
-      <th scope="col">Action</th>
     </tr>
     </thead>
     <tbody>
@@ -45,9 +40,6 @@
           <td class='col-2'><%= i.name %></td>
           <td class='col-4'><%= i.photo %></td>
           <td class='col-2'><%= i.price %> $</td>
-          <td class='col-2'><%= link_to 'Delete', menu_item_path(@menu, i),
-            method: :delete, data: { confirm: 'Are you sure?' } %>
-          </td>
         </tr>
       <% end %>
     </tbody>
@@ -62,7 +54,6 @@
       <th scope="col">Name</th>
       <th scope="col">Photo</th>
       <th scope="col">Price</th>
-      <th scope="col">Action</th>
     </tr>
     </thead>
     <tbody>
@@ -72,9 +63,6 @@
           <td class='col-2'><%= i.name %></td>
           <td class='col-4'><%= i.photo %></td>
           <td class='col-2'><%= i.price %> $</td>
-          <td class='col-2'><%= link_to 'Delete', menu_item_path(@menu, i),
-            method: :delete, data: { confirm: 'Are you sure?' } %>
-          </td>
         </tr>
       <% end %>
     </tbody>
@@ -82,7 +70,7 @@
 <% end %>
 
 <div>
-  <%= link_to 'Edit', edit_menu_path(@menu), class: 'btn btn-success back-btn' if @menu.current? %>
+  <%= link_to 'Edit', edit_menu_path(@menu), class: 'btn btn-success back-btn' if policy(@menu).create? %>
 </div>
 
 <div class="container">
@@ -103,78 +91,82 @@
       <% end %>
     </div>
 
-    <div class='col-md-4 offset-md-3'>
-      <h3>My Order</h3>
-      <% @user_order.each do |order| %>
-        Order # <%= order.id %>
-        <table class='table table-bordered margin'>
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">Course</th>
-              <th scope="col">Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><%= order.first_course.name if order.first_course.present? %></td>
-              <td><%= order.first_course.price if order.first_course.present? %></td>
-            </tr>
-            <tr>
-              <td><%= order.main_course.name if order.main_course.present? %></td>
-              <td><%= order.main_course.price if order.main_course.present? %></td>
-            </tr>
-            <tr>
-              <td><%= order.drink.name if order.drink.present? %></td>
-              <td><%= order.drink.price if order.drink.present? %></td>
-            </tr>
-          </tbody>
-        </table>
-        <div>
-          @<b><%= order.user.username if order.user.present? %></b>
-          total: <%= order.price if order.price.present? %> $
-        </div>
-        <hr>
-      <% end %>
-    </div>
-
-    <div class='col-md-4 offset-md-3'>
-      <div>
-        <u><h4>Total for the Day: <%= @total %> $</u>
+    <% unless current_user.admin? %>
+      <div class='col-md-4 offset-md-3'>
+        <h3>My Order</h3>
+        <% @user_order.each do |order| %>
+          Order # <%= order.id %>
+          <table class='table table-bordered margin'>
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Course</th>
+                <th scope="col">Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><%= order.first_course.name if order.first_course.present? %></td>
+                <td><%= order.first_course.price if order.first_course.present? %></td>
+              </tr>
+              <tr>
+                <td><%= order.main_course.name if order.main_course.present? %></td>
+                <td><%= order.main_course.price if order.main_course.present? %></td>
+              </tr>
+              <tr>
+                <td><%= order.drink.name if order.drink.present? %></td>
+                <td><%= order.drink.price if order.drink.present? %></td>
+              </tr>
+            </tbody>
+          </table>
+          <div>
+            @<b><%= order.user.username if order.user.present? %></b>
+            total: <%= order.price if order.price.present? %> $
+          </div>
+          <hr>
+        <% end %>
       </div>
+    <% end %>
 
-      <h3>Orders for Day</h3>
-
-      <% @menu.orders.each do |order| %>
-        Order # <%= order.id %>
-        <table class='table table-bordered margin'>
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">Course</th>
-              <th scope="col">Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><%= order.first_course.name if order.first_course.present? %></td>
-              <td><%= order.first_course.price if order.first_course.present? %></td>
-            </tr>
-            <tr>
-              <td><%= order.main_course.name if order.main_course.present? %></td>
-              <td><%= order.main_course.price if order.main_course.present? %></td>
-            </tr>
-            <tr>
-              <td><%= order.drink.name if order.drink.present? %></td>
-              <td><%= order.drink.price if order.drink.present? %></td>
-            </tr>
-          </tbody>
-        </table>
+    <% if policy(Order).show? %>
+      <div class='col-md-4 offset-md-3'>
         <div>
-          @<b><%= order.user.username if order.user.present? %></b>
-          total: <%= order.price %> $
+          <u><h4>Total for the Day: <%= @total %> $</u>
         </div>
-        <hr>
-      <% end %>
-    </div>
+
+        <h3>Orders for Day</h3>
+
+        <% @menu.orders.each do |order| %>
+          Order # <%= order.id %>
+          <table class='table table-bordered margin'>
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Course</th>
+                <th scope="col">Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><%= order.first_course.name if order.first_course.present? %></td>
+                <td><%= order.first_course.price if order.first_course.present? %></td>
+              </tr>
+              <tr>
+                <td><%= order.main_course.name if order.main_course.present? %></td>
+                <td><%= order.main_course.price if order.main_course.present? %></td>
+              </tr>
+              <tr>
+                <td><%= order.drink.name if order.drink.present? %></td>
+                <td><%= order.drink.price if order.drink.present? %></td>
+              </tr>
+            </tbody>
+          </table>
+          <div>
+            @<b><%= order.user.username if order.user.present? %></b>
+            total: <%= order.price %> $
+          </div>
+          <hr>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>
 
