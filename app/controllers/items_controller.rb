@@ -20,7 +20,7 @@ class ItemsController< ApplicationController
     authorize @item
 
     if @items.save
-      redirect_to @menu, notice: 'Item was succesfully created'
+      redirect_to @menu, notice: I18n.t('controllers.item.created')
     else
       render :new
     end
@@ -30,7 +30,7 @@ class ItemsController< ApplicationController
     authorize @item
 
     if @item.update(item_params)
-      redirect_to @menu, notice: 'Item was succesfully updated'
+      redirect_to @menu, notice: I18n.t('controllers.item.updated')
     else
       render :edit
     end
@@ -40,7 +40,7 @@ class ItemsController< ApplicationController
     authorize @item
 
     @item.destroy!
-    redirect_to menu_url(@menu), notice: 'Item was succesfully destroyed'
+    redirect_to menu_url(@menu), notice: I18n.t('controllers.item.destroyed')
   end
 
   private

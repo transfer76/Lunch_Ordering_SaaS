@@ -19,9 +19,9 @@ class OrdersController < ApplicationController
     authorize @order
 
     if @order.save
-      redirect_to @order.menu, notice: 'Order was successfully created.'
+      redirect_to @order.menu, notice: I18n.t('controllers.order.created')
     else
-      redirect_to @order.menu, alert: 'Order was not created'
+      redirect_to @order.menu, alert: I18n.t('controllers.order.notcreated')
     end
   end
 

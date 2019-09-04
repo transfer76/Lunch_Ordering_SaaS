@@ -33,3 +33,19 @@ en:
   errors:
     one: '%{count} error'
     other: '%{count} errors'
+
+  controllers:
+    item:
+      created: 'Item was created'
+      updated: 'Item list was successfully updated'
+      destroyed: 'Item list was successfully destroyed'
+    menu:
+      created : 'Menu was successfully created'
+      updated : 'Menu was successfully updated'
+      destroyed: 'Menu was successfully destroyed'
+    order:
+      created: 'Order was successfully created'
+      notcreated: 'Order was not created - One of cources mast be present'
+    user:
+      updated: 'User was successfully updated'
+      destroyed: 'User was successfully destroyed'
