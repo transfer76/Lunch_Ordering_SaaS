@@ -3,7 +3,7 @@ class MenusController < ApplicationController
   before_action :set_menu, only: [:show, :edit, :update, :destroy]
 
   def index
-    @menus = Menu.where('created_at >= ?', 5.days.ago).order(date: :asc, ).all
+    @menus = Menu.where('created_at >= ?', 5.days.ago).order(date: :asc).all
 
     authorize @menus
   end
@@ -14,7 +14,7 @@ class MenusController < ApplicationController
     end
 
     @user_order = @menu.orders.where(user_id: current_user.id)
-    @total = @menu.orders.where(@order.price).sum(:price)
+    @total = @menu.orders.pluck(:price).inject(:+)
 
     authorize @menu
   end

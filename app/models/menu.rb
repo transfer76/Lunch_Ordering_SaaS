@@ -5,7 +5,7 @@ class Menu < ApplicationRecord
   validates :date, presence: true, format: /\A\d{4}-\d{2}-\d{2}\z/, uniqueness: true
   validate :validate_date
 
-  accepts_nested_attributes_for :items
+  accepts_nested_attributes_for :items, allow_destroy: true
 
   def current?
     date == Date.today.strftime('%Y-%m-%d')

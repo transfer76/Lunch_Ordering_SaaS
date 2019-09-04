@@ -4,7 +4,7 @@
   <%= image_tag user_avatar(@user), class: 'user-avatar' %>
 
     <p class="form-button">
-      <%= link_to "Edit profile", edit_user_path(@user), class: 'btn btn-default back-btn' if current_user %>
+      <%= link_to "Edit profile", edit_user_path(@user), class: 'btn btn-default back-btn' %>
     </p>
 </div>
 
@@ -47,4 +47,6 @@
 </div>
 <% end %>
 
-<%= link_to 'Back', users_path, class: "btn btn-outline-dark back-btn" %>
+<div class="button fa fa-arrow-left fa-lg">
+  <%= link_to 'Back', menus_path, class: "btn btn-outline-dark back-btn" %>
+</div>
