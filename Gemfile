@@ -24,6 +24,7 @@ gem 'rubocop', require: false
 gem "cocoon"
 gem "awesome_print"
 gem 'fog-aws'
+gem 'knock'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

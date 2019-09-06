@@ -7,4 +7,10 @@ Rails.application.routes.draw do
   end
   resources :orders, only: [:index, :show, :new, :create]
   resources :users
+
+  namespace :api do
+    namespace :v1 do
+      resources :orders , only: [:create]
+    end
+  end
 end
