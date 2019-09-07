@@ -42,3 +42,26 @@ use RSpec+Capybara)
 * The source code of application should be uploaded on github.com and deployed to
 heroku in the end.
 * Connect Travis​ CI to your public repository
+
+
+### Description
+
+Task is implemented on:  **Ruby 2.5.3**, **Ruby on Rails 5.2.3**
+
+Language: **English**
+
+Used gem for authorization and authentication: **Devise**, **Pundit**, **Rolify**
+
+Database: **PostgreSQL**
+
+### To Start
+
+1. Clone this repositiry
+2. Install all necessary gems
+```
+$ Bundle
+```
+3. Create database, migraitions and start seeds file(automatically create user admin, menu, items)
+```
+$ bundle exec rails db:setup
+```
