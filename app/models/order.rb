@@ -23,6 +23,10 @@ class Order < ApplicationRecord
     self.price = (a + b + c)
   end
 
+  def serialize
+    PostSerializer.new(self)
+  end
+
   private
 
   def validate_current_day
