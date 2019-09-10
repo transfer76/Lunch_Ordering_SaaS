@@ -7,6 +7,10 @@ class Menu < ApplicationRecord
 
   accepts_nested_attributes_for :items, allow_destroy: true
 
+  def self.current
+    where(date: Date.today.strftime('%Y-%m-%d')).includes(orders: [:user, :first_course, :main_course, :drink]).first!
+  end
+
   def current?
     date == Date.today.strftime('%Y-%m-%d')
   end
