@@ -19,5 +19,5 @@ end
   { course: :first_course, name: 'soup', price: 5 },
   { course: :main_course, name: 'meat', price: 10 }
 ].each do |hash|
-    Item.create!(hash) unless Item.exists?(hash)
+  Item.create!(hash) unless Item.exists?(hash)
 end

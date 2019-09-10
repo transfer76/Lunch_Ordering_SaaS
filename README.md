@@ -69,4 +69,4 @@ $ bundle exec rails db:setup
 
 **Heroku admin** - email: 'exemple@exemple.com', password: '123123'
 
-**Api secure token for postman** - BkE4ObMypq3vLH4igP8fk4euz4cFGm
+**Api secure token for postman** - BkE4ObMypq3vLH4igP8fk4euz4cFGm (credentials.yaml.enc)
